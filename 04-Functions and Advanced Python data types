@@ -1,0 +1,55 @@
+## 任务 4.1: 将 lying_dvd 添加到 dvd_stack 的末尾 ##
+def add_dvd_to_stack(dvd_stack, lying_dvd):
+    '''(list , str) --> updated_list
+    Adds lying_dvd at the end of the dvd_stack.
+    '''
+    # 使用列表的 append 方法将 DVD 添加到末尾
+    dvd_stack.append(lying_dvd)
+    return dvd_stack
+
+## 任务 4.2: 从展示堆栈中移除重复的 DVD ##
+def remove_duplicates(display_stack):
+    '''(list) --> list
+    Removes duplicate dvds from the stack, display_stack.
+    '''
+    # 将展示堆栈转为集合，移除重复项，然后再转换回列表
+    updated_display_stack = list(set(display_stack))
+    return updated_display_stack
+
+## 任务 4.3: 基于电影类别组织电影 ##
+def category_sort(movie_name):
+    '''(dict) --> dict
+    Organizes movies by their categories.
+    '''
+    # 创建一个空字典，用于将类别作为键，电影列表作为值
+    category_dict = {}
+    
+    # 遍历 movie_name 字典，将电影根据类别分类
+    for movie, category in movie_name.items():
+        if category not in category_dict:
+            category_dict[category] = []
+        category_dict[category].append(movie)
+    
+    return category_dict
+
+## 任务 4.4: 检查是否有特定的电影 ##
+def find_a_movie(category_based_movies, movie):
+    '''(dict, str) --> bool
+    Checks if a specific movie is available in the store.
+    '''
+    # 遍历 category_based_movies 的值（电影列表），检查电影是否存在
+    for movies in category_based_movies.values():
+        if movie in movies:
+            return True
+    return False
+
+## 任务 4.5: 返回指定类别的所有电影 ##
+def all_movies_in_category(category_based_movies, category):
+    '''(dict, str) --> list
+    Returns all movies in a given category.
+    '''
+    # 如果类别不存在，抛出断言错误
+    assert category in category_based_movies, f"Category '{category}' not found in store."
+    
+    # 返回指定类别的所有电影
+    return category_based_movies[category]
